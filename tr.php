@@ -219,7 +219,11 @@ END_foirm;
 <a href='trstr.php?id=$id'><img src='/icons-smo/peann.png' alt='$T_Deasaich str' title='$T_DeasaichFios'></a>
 <img src='/icons-smo/dublaich.png' onclick=dublaichStr($id) alt='$T_Dublaich str' title='$T_DublaichFios'>
 EOD_deasaichHtml;
-            $duilleaganHtml = "<a href='duilleagan.php?id=$id' target='trduilleagan' title=\"$T_Duilleagan_str_cleachdadh\"><img src='/icons-smo/td.gif' alt='duilleagan' style='padding:0 1px'></a>";
+            $duilleaganHtml = <<<EOD_duilleaganHtml
+<a href='duilleagan.php?id=$id' target='trduilleagan' title="$T_Duilleagan_str_cleachdadh"><img src='/icons-smo/td.gif' alt='duilleagan' style='padding:0 1px'></a>
+(<a href='//www3.smo.uhi.ac.uk/teanga/smotr/duilleagan.php?id=$id' target='trduilleagan' title="www3.smo.uhi.ac.uk"><img src='/icons-smo/td.gif' style='padding:0 1px'></a>
+<a href='//www2.smo.uhi.ac.uk/teanga/smotr/duilleagan.php?id=$id' target='trduilleagan' title="www2.smo.uhi.ac.uk"><img src='/icons-smo/td.gif' style='padding:0 1px'></a>)
+EOD_duilleaganHtml;
             $HTML .= "<div class=str>$strHtml$fios $duilleaganHtml $deasaichHtml</div>\n";
             $HTML .= "<table class='tratab'>\n";
             foreach ($traArr as $traRow) {
