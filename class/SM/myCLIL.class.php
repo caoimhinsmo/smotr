@@ -5,7 +5,7 @@ class SM_myCLIL {
 
   public $toradh, $id, $expiry, $toiseach, $feart;
 
-  const LUCHD_EADARTHEANGACHAIDH  = 'caoimhinsmo|2019-pm|2000-mmd|1999-dil';  // Feadhainn aig a bheil cead tr a chleachdadh gus an eadar-aghaidh de phrògraman eadar-theangachadh
+  const LUCHD_EADARTHEANGACHAIDH  = 'caoimhinsmo|Rex|fred|2019-pm|2000-mmd|1999-dil';  // Feadhainn aig a bheil cead tr a chleachdadh gus an eadar-aghaidh de phrògraman eadar-theangachadh
   const LUCHD_EADARTHEANGACHAIDH2 = 'caoimhinsmo';                            // Feadhainn aig a bheil cead trstr a chleachdadh gus na sreangan fhéin atharrachadh
 
   private function __construct() {
