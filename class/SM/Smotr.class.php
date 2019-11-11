@@ -1,7 +1,7 @@
 <?php
 class SM_Smotr
 {
-  const SMOTRURL = 'https://www2.smo.uhi.ac.uk/gaidhlig/faclair/smotr/';
+  const SMOTRURL = '/teanga/smotr/';
 
   public static function navbar($domhan='',$duilleagAghaidh=0,$str=0) {
       $smotrURL = self::SMOTRURL;
@@ -18,7 +18,7 @@ class SM_Smotr
       $strCeangal = ( $str ? "<li><a href='$strCeangal'>Sreang $str</a>" : '' );
       $myCLIL = SM_myCLIL::singleton();
       if ($myCLIL->cead(SM_myCLIL::LUCHD_EADARTHEANGACHAIDH) && !empty($domhan))
-        { $trPutan = "\n<li class=deas><a href='/gaidhlig/faclair/smotr/tr.php?domhan=$domhan' target='tr' title='$T_tr_fios'>tr</a>"; } else { $trPutan = ''; }
+        { $trPutan = "\n<li class=deas><a href='/teanga/smotr/tr.php?domhan=$domhan' target='tr' title='$T_tr_fios'>tr</a>"; } else { $trPutan = ''; }
       $ceangalRiMoSMO = ( isset($myCLIL->id)
                         ? '<li class="deas"><a href="/teanga/smotr/logout.php" title="Log out from myCLIL">Logout</a></li>'
                         : "<li class='deas'><a href='/teanga/smotr/login.php?till_gu=$smotrURL/' title='$T_Log_air_fios'>$T_Log_air</a></li>"
