@@ -152,7 +152,7 @@ END_HTML;
         table#priomh tr.ire1,
         table#priomh tr.ire2,
         table#priomh tr.ire3,
-        table#priomh tr.ire4 { font-style:italic; font-weight:bold; }
+        table#priomh tr.ire4 { font-style:italic; font-weight:bold; background-color:#ddd; }
         table#priomh tr.ire2 { border-top:1px solid #bbb; }
         table#priomh tr { border-top:1px solid #bbb; }
         table#priomh td { text-align:right; padding:1px 10px; border-left:1px solid #bbb; border-right:1px solid #bbb; }
