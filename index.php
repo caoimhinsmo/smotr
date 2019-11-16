@@ -3,6 +3,16 @@
     header("Location:http://claran.smo.uhi.ac.uk/mearachd/include_a_dhith/?faidhle=autoload.inc.php");
   header('Cache-Control:max-age=0');
 
+  $T = new SM_T('smotr/index');
+  $hl0 = $T->hl0();
+  $T_SmotrTitle                      = $T->_('SmotrTitle');
+  $T_Deasaich_eadar_theangachaidhean = $T->_('Deasaich_eadar_theangachaidhean');
+  $T_As_phortaich                    = $T->_('As_phortaich');
+  $T_Cruthaich_sreang_ur             = $T->_('Cruthaich_sreang_ur');
+  $T_Aireamhan                       = $T->_('Aireamhan');
+
+  $navbar = SM_Smotr::navbar($T->domhan,1);
+
   try {
     $myCLIL = SM_myCLIL::singleton();
     $ceadaichte  = SM_myCLIL::LUCHD_EADARTHEANGACHAIDH;
@@ -10,16 +20,6 @@
     if (!$myCLIL->cead($ceadaichte)) { $myCLIL->diultadh(''); }
     $myCLIL->dearbhaich();
     $Smotr = SM_SmotrPDOedit::singleton('rw');
-
-    $T = new SM_T('smotr/index');
-    $hl0 = $T->hl0();
-    $T_SmotrTitle                      = $T->_('SmotrTitle');
-    $T_Deasaich_eadar_theangachaidhean = $T->_('Deasaich_eadar_theangachaidhean');
-    $T_As_phortaich                    = $T->_('As_phortaich');
-    $T_Cruthaich_sreang_ur             = $T->_('Cruthaich_sreang_ur');
-    $T_Aireamhan                       = $T->_('Aireamhan');
-
-    $navbar = SM_Smotr::navbar($T->domhan,1);
 
     $ceanglaichean = <<<EOD_ceanglaichean
 <li><a href="tr.php">$T_Deasaich_eadar_theangachaidhean</a>

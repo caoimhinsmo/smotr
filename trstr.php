@@ -53,7 +53,7 @@
                 $id = $Smotr->lastInsertId();
                 $T_Chaidh_sreang_id_chruthachadh = sprintf($T_Chaidh_sreang_id_chruthachadh,$id);
                 $HTML = "<p>$T_Chaidh_sreang_id_chruthachadh</p>\n";
-                $athsheolURL = SM_Smotr::SMOTRURL . "trstr.php?id=$id";
+                $athsheolURL = SM_Smotr::smotrHome() . "trstr.php?id=$id";
                 $athsheol = "\n<meta http-equiv='refresh' content='1;URL=$athsheolURL'>"; 
             } else {
                 $stmtUPD = $Smotr->prepare('UPDATE trstr SET domhan=:domhan, str=:str, fios=:fios WHERE id=:id');

@@ -16,7 +16,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Logout from Clilstore</title>
-    <meta http-equiv="refresh" content="2; url=$serverhome/teanga/smotr/">
+    <meta http-equiv="refresh" content="2; url=$serverhome/teanga/">
     <link rel="icon" type="image/png" href="/favicons/clilstore.png">
 </head>
 <body>

@@ -43,12 +43,13 @@ if ($password=='' && strlen($passwordAsTyped)>3) {
             $myCLIL::cuirCookie('myCLIL_authentication',$user,0,108000); //Cookie expires at session end, or max 30 hours
             $csSess->setUser($user);  //Remember $user, to make the next login easier
             SM_csSess::logWrite($user,'login');
+            $till_gu = ( empty($_GET['till_gu']) ? "$serverhome/teanga/smotr/" : $_GET['till_gu'] );
             $successMessage = <<<ENDsuccess
 <p style="color:green"><span style="font-size:200%">✔</span> You have successfully logged in.</p>
 <p style="margin-left:1em">⇨ Go to <a href="./" style="font-weight:bold">Smotr</a></p>
 ENDsuccess;
             $formRequired = FALSE;
-            $refreshHeader =  "<meta http-equiv=\"refresh\" content=\"1; url=$serverhome/teanga/smotr/\">";
+            $refreshHeader =  "<meta http-equiv='refresh' content='1; url=$till_gu'>";
         } elseif (!isset($_GET['user'])) {
             $successMessage = <<<ENDfailure
 <p style="color:red">Userid or password incorrect</p>
@@ -79,14 +80,14 @@ ENDform;
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login to Clilstore</title>
+    $refreshHeader
+    <title>Login to myCLIL</title>
     <link rel="stylesheet" href="/css/smo.css">
     <link rel="stylesheet" href="style.css?version=2014-04-15">
     <link rel="icon" type="image/png" href="/favicons/clilstore.png">
     <style>
         span.info { color:green; font-size:70%; font-style:italic; }
     </style>
-$refreshHeader
 </head>
 <body>
 
@@ -95,7 +96,7 @@ $refreshHeader
 </ul>
 <div class="smo-body-indent">
 
-<h1>Login to Clilstore</h1>
+<h1>Login to myCLIL</h1>
 
 $successMessage
 $formHtml
