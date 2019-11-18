@@ -5,11 +5,13 @@ class SM_Smotr {
       if ($_SERVER['SERVER_NAME']=='www2.smo.uhi.ac.uk') { return '/teanga/smotr_dev'; }
       return '/teanga/smotr';
   }
+  public static function smotrUrl() {
+      return 'https://' . $_SERVER['SERVER_NAME'] . self::smotrHomeDir();
+  }
 
   public static function navbar($domhan='',$duilleagAghaidh=0,$str=0) {
       $smohl = SM_T::hl0();
-      $smotrHome = self::smotrHomeDir();
-      $smotrUrl = 'https://' . $_SERVER['SERVER_NAME'] . $smotrHome;
+      $smotrUrl = 'self::smotrUrl();
       $T = new SM_T('smotr/navbar');
       $T_SmotrTitle    = $T->_('SmotrTitle');
       $T_canan_eadarAghaidh = $T->_('canan_eadarAghaidh','hsc');
@@ -45,10 +47,17 @@ class SM_Smotr {
 <script>
     function atharraichCanan(hl) {
         document.cookie='smohl='+hl;
-        const params = new URLSearchParams(location.search)
-        params.delete('hl');
-        var paramstr = params.toString();
-        if (paramstr!='') { paramstr = '?'+paramstr; }
+        var paramstr = location.search;
+        if (/Trident/.test(navigator.userAgent) || /MSIE/.test(navigator.userAgent)) {
+          //Rud lag lag airson seann Internet Explorer, nach eil eòlach air URLSearchParams. Sguab ás nuair a bhios IE marbh.
+            if (paramstr.length==6 && paramstr.substring(0,4)=='?hl=') { paramstr = ''; }
+            paramstr = paramstr;
+        } else {
+            const params = new URLSearchParams(paramstr)
+            params.delete('hl');
+            paramstr = params.toString();
+            if (paramstr!='') { paramstr = '?'+paramstr; }
+        }
         loc = window.location;
         location = loc.protocol + '//' + loc.hostname + loc.pathname + paramstr;
     }
