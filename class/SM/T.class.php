@@ -78,8 +78,32 @@ class SM_T {
           setcookie('smohl',$hl);
           return $hl;
       }
-      if (empty($_COOKIE['smohl'])) { return 'gd'; }
-      return $_COOKIE['smohl'];
+      if (!empty($_COOKIE['smohl'])) { return $_COOKIE['smohl']; }
+     //Mura bheil hl sna request variables, cleachd na h-accept-languages bhon bhrabhsair
+      $http2 = new HTTP2();
+      $negLang = $http2->negotiateLanguage(['gd'=>true,'gd-GB'=>true]);
+      if (substr($_SERVER['SERVER_NAME'],-13)=='smo.uhi.ac.uk' && $negLang<>'gd' && $negLang<>'gd-GB') {
+          $negLang = 'gd';  //Air frithealaichean smo.uhi.ac.uk, mura bheil Gàidhlig sna h-accept-languages idir, ’s e Gàidhlig a gheibhear!!
+      } else {
+          $cananCeadaichteArr =
+            [ 'en', 'en-GB', 'en-US',
+              'gd', 'gd-GB',
+              'ga', 'ga-IE',
+              'br', 'br-FR',
+              'fr', 'fr-FR',
+              'de', 'de-DE',
+              'da', 'da-DK',
+              'es', 'es-ES',
+              'it', 'it-IT',
+              'bg', 'bg-BG',
+              'cy', 'cy-GB' ];
+          $supported = [];
+          foreach ($cananCeadaichteArr as $canan) { $supported[$canan] = true; }
+          $negLang = $http2->negotiateLanguage($supported);
+      }
+      $negLang = explode('-',$negLang)[0]; //Tilg a-mach region sam bith agus gléidh an cód cànain a-mhàin
+      setcookie('smohl',$negLang);
+      return $negLang;
   }
 
   public static function hl0() {
