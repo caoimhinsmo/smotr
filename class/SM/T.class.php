@@ -79,7 +79,7 @@ class SM_T {
           return $hl;
       }
       if (!empty($_COOKIE['smohl'])) { return $_COOKIE['smohl']; }
-     //Mura bheil hl sna request variables, cleachd na h-accept-languages bhon bhrabhsair
+     //Mura bheil hl sna request variables, no smohl ann an cookie, cleachd na h-accept-languages bhon bhrabhsair
       $http2 = new HTTP2();
       $negLang = $http2->negotiateLanguage(['gd'=>true,'gd-GB'=>true]);
       if (substr($_SERVER['SERVER_NAME'],-13)=='smo.uhi.ac.uk' && $negLang<>'gd' && $negLang<>'gd-GB') {

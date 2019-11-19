@@ -11,7 +11,7 @@ class SM_Smotr {
 
   public static function navbar($domhan='',$duilleagAghaidh=0,$str=0) {
       $smohl = SM_T::hl0();
-      $smotrUrl = 'self::smotrUrl();
+      $smotrUrl = self::smotrUrl();
       $T = new SM_T('smotr/navbar');
       $T_SmotrTitle    = $T->_('SmotrTitle');
       $T_canan_eadarAghaidh = $T->_('canan_eadarAghaidh','hsc');
