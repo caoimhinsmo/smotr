@@ -11,7 +11,8 @@ class SM_Smotr {
 
   public static function navbar($domhan='',$duilleagAghaidh=0,$str=0) {
       $smohl = SM_T::hl0();
-      $smotrUrl = self::smotrUrl();
+      $smotrHomeDir = self::smotrHomeDir();
+      $smotrUrl     = self::smotrUrl();
       $T = new SM_T('smotr/navbar');
       $T_SmotrTitle    = $T->_('SmotrTitle');
       $T_canan_eadarAghaidh = $T->_('canan_eadarAghaidh','hsc');
@@ -19,15 +20,15 @@ class SM_Smotr {
       $T_Log_air_fios       = $T->_('Log_air_fios','hsc');
       $T_tr_fios            = $T->_('tr_fios','hsc');
       if ($duilleagAghaidh) { $SmotrCeangal = "<li><a href='/toisich/' title='Sabhal Mór Ostaig - prìomh dhuilleag (le dà briog)'>SMO</a>"; }
-        else                { $SmotrCeangal = "<li><a href='$smotrHome' title='$T_SmotrTitle'>Smotr</a>"; }
-      $strCeangal = "$smotrHome/tr.php?tra=[$str]";
+        else                { $SmotrCeangal = "<li><a href='$smotrHomeDir' title='$T_SmotrTitle'>Smotr</a>"; }
+      $strCeangal = "$smotrHomeDir/tr.php?tra=[$str]";
       $strCeangal = ( $str ? "<li><a href='$strCeangal'>Sreang $str</a>" : '' );
       $myCLIL = SM_myCLIL::singleton();
       if ($myCLIL->cead(SM_myCLIL::LUCHD_EADARTHEANGACHAIDH) && !empty($domhan))
         { $trPutan = "\n<li class=deas><a href='/teanga/smotr/tr.php?domhan=$domhan' target='tr' title='$T_tr_fios'>tr</a>"; } else { $trPutan = ''; }
       $ceangalRiMoSMO = ( isset($myCLIL->id)
-                        ? "<li class='deas'><a href='$smotrHome/logout.php' title='Log out from myCLIL'>Logout</a></li>"
-                        : "<li class='deas'><a href='$smotrHome/login.php?till_gu=$smotrUrl/' title='$T_Log_air_fios'>$T_Log_air</a></li>"
+                        ? "<li class='deas'><a href='$smotrHomeDir/logout.php' title='Log out from myCLIL'>Logout</a></li>"
+                        : "<li class='deas'><a href='$smotrHomeDir/login.php?till_gu=$smotrUrl/' title='$T_Log_air_fios'>$T_Log_air</a></li>"
                         );
       $hlArr = array(
           'br'=>'Brezhoneg',
