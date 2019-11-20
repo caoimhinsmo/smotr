@@ -102,6 +102,7 @@ class SM_T {
           $negLang = $http2->negotiateLanguage($supported);
       }
       $negLang = explode('-',$negLang)[0]; //Tilg a-mach region sam bith agus gléidh an cód cànain a-mhàin
+      if ($negLang<>'en') { $negLang .= '|en'; }
       setcookie('smohl',$negLang);
       return $negLang;
   }
