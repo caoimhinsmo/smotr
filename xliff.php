@@ -115,10 +115,11 @@ END_foirm;
                 $traSourceHSC = htmlspecialchars($traSource);
                 $traTargetHSC = htmlspecialchars($traTarget);
                 $fiosHSC      = htmlspecialchars($fios);
+                $sourceState = ( $traTarget ? ' state="translated"' : '' );
                 $xliffDomhan .= <<<EOD_Unit
     <unit id="$id">
       <$segment>
-        <source>$traSourceHSC</source>
+        <source$sourceState>$traSourceHSC</source>
         <target>$traTargetHSC</target>
         <note>$fiosHSC</note>
       </$segment>
