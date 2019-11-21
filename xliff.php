@@ -114,12 +114,13 @@ END_foirm;
                 $strHSC    = htmlspecialchars($str);
                 $traSourceHSC = htmlspecialchars($traSource);
                 $traTargetHSC = htmlspecialchars($traTarget);
+                $fiosHSC      = htmlspecialchars($fios);
                 $xliffDomhan .= <<<EOD_Unit
     <unit id="$id">
       <$segment>
         <source>$traSourceHSC</source>
         <target>$traTargetHSC</target>
-        <note>$fios</note>
+        <note>$fiosHSC</note>
       </$segment>
     </unit>
 
