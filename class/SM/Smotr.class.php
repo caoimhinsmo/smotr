@@ -32,15 +32,15 @@ class SM_Smotr {
                         );
       $hlArr = array(
           'br'=>'Brezhoneg',
+          'da'=>'Dansk',
           'de'=>'Deutsch',
           'en'=>'English',
           'fr'=>'Français',
           'ga'=>'Gaeilge',
           'gd'=>'Gàidhlig',
+          'it'=>'Italiano',
           'cy'=>'Cymraeg (anorffenedig)',
-          'da'=>'Dansk (ufuldstændig)',
           'es'=>'Español (incompleto)',
-          'it'=>'Italiano (incompleto)',
           'bg'=>'Български (непълен)');
       $options = '';
       foreach ($hlArr as $hl=>$hlAinm) { $options .= "<option value='$hl|en'" . ( $hl==$smohl ? ' selected' : '' ) . ">$hlAinm</option>\n"; }
