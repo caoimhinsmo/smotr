@@ -11,6 +11,9 @@
   if (!isset($_REQUEST['tra'])) { die('tra is not set'); }
   $id  = $_REQUEST['id'];
   $t   = $_REQUEST['t'];
+  if ( $t==strtoupper($t)                                      //Ceartaich daoine a sgrìobhas cód cànain le litrichean móra
+      && !$myCLIL->cead(SM_myCLIL::LUCHD_EADARTHEANGACHAIDH2)) //ach leig do na h-urramaich rudan leithid 'TEST' a sgrìobhadh
+      { $t = strtolower($t); }
   $tra = urldecode($_REQUEST['tra']);
   $Smotr = SM_SmotrPDOedit::singleton('rw');
   $stmt = $Smotr->prepare('INSERT INTO trtra(id,t,tra,csmid,ctime,msmid,mtime) VALUES(:id,:t,:tra,:smid,:utime,:smid,:utime)');
