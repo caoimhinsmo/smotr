@@ -39,8 +39,10 @@ class SM_Smotr {
           'ga'=>'Gaeilge',
           'gd'=>'Gàidhlig',
           'it'=>'Italiano',
+          'lt'=>'Lietuvių',
           'cy'=>'Cymraeg (anorffenedig)',
           'es'=>'Español (incompleto)',
+          'pt'=>'Portuguès (incompleto)',
           'bg'=>'Български (непълен)');
       $options = '';
       foreach ($hlArr as $hl=>$hlAinm) { $options .= "<option value='$hl|en'" . ( $hl==$smohl ? ' selected' : '' ) . ">$hlAinm</option>\n"; }
