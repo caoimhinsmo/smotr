@@ -222,7 +222,7 @@ EOD_deasaichHtml;
             $duilleaganHtml = <<<EOD_duilleaganHtml
 <a href='duilleagan.php?id=$id' target='trduilleagan' title="$T_Duilleagan_str_cleachdadh"><img src='/icons-smo/td.gif' alt='duilleagan' style='padding:0 1px'></a>
 (<a href='//www3.smo.uhi.ac.uk/teanga/smotr/duilleagan.php?id=$id' target='trduilleagan' title="www3.smo.uhi.ac.uk"><img src='/icons-smo/td.gif' style='padding:0 1px'></a>
-<a href='//www2.smo.uhi.ac.uk/teanga/smotr/duilleagan.php?id=$id' target='trduilleagan' title="www2.smo.uhi.ac.uk"><img src='/icons-smo/td.gif' style='padding:0 1px'></a>)
+<a href='//www2.smo.uhi.ac.uk/teanga/smotr_dev/duilleagan.php?id=$id' target='trduilleagan' title="www2.smo.uhi.ac.uk"><img src='/icons-smo/td.gif' style='padding:0 1px'></a>)
 EOD_duilleaganHtml;
             $HTML .= "<div class=str>$strHtml$fios $duilleaganHtml $deasaichHtml</div>\n";
             $HTML .= "<table class='tratab'>\n";
