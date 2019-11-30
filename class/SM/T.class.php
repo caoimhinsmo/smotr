@@ -38,10 +38,12 @@ class SM_T {
       }
       if (!empty($tra)) { self::log($id,$t); }
         else            { $tra = "✕$str"; }
-      if       ($opt=='hsc') { $tra = htmlspecialchars($tra); }
+      if       ($opt=='hsc') { $tra = htmlspecialchars($tra,ENT_QUOTES); }
        else if ($opt=='eq')  { $tra = strtr($tra,["'"=>"\'", '"'=>'\"']); } //Escape quotes for use in Javascript
       return $tra;
   }
+  public function h($str) { return htmlspecialchars( self::_($str), ENT_QUOTES ); } //Escape special characters and quotes for use in HTML
+  public function j($str) { return strtr( self::_(str), ["'"=>"\'", '"'=>'\"'] ); } //Escape quotes for use in Javascript strings
 
   private static function log($id,$t) {
       $SmotrLog = SM_SmotrLogPDO::singleton('rw');
