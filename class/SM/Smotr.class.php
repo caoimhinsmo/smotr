@@ -14,11 +14,11 @@ class SM_Smotr {
       $smotrHomeDir = self::smotrHomeDir();
       $smotrUrl     = self::smotrUrl();
       $T = new SM_T('smotr/navbar');
-      $T_SmotrTitle    = $T->_('SmotrTitle');
-      $T_canan_eadarAghaidh = $T->_('canan_eadarAghaidh','hsc');
-      $T_Log_air            = $T->_('Log_air','hsc');
-      $T_Log_air_fios       = $T->_('Log_air_fios','hsc');
-      $T_tr_fios            = $T->_('tr_fios','hsc');
+      $T_SmotrTitle         = $T->h('SmotrTitle');
+      $T_canan_eadarAghaidh = $T->h('canan_eadarAghaidh');
+      $T_Log_air            = $T->h('Log_air');
+      $T_Log_air_fios       = $T->h('Log_air_fios');
+      $T_tr_fios            = $T->h('tr_fios');
       if ($duilleagAghaidh) { $SmotrCeangal = "<li><a href='/toisich/' title='Sabhal Mór Ostaig - prìomh dhuilleag (le dà briog)'>SMO</a>"; }
         else                { $SmotrCeangal = "<li><a href='$smotrHomeDir' title='$T_SmotrTitle'>Smotr</a>"; }
       $strCeangal = "$smotrHomeDir/tr.php?tra=[$str]";
