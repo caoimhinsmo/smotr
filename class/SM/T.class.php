@@ -43,7 +43,7 @@ class SM_T {
       return $tra;
   }
   public function h($str) { return htmlspecialchars( self::_($str), ENT_QUOTES ); } //Escape special characters and quotes for use in HTML
-  public function j($str) { return strtr( self::_(str), ["'"=>"\'", '"'=>'\"'] ); } //Escape quotes for use in Javascript strings
+  public function j($str) { return strtr( self::_($str), ["'"=>"\'", '"'=>'\"'] ); } //Escape quotes for use in Javascript strings
 
   private static function log($id,$t) {
       $SmotrLog = SM_SmotrLogPDO::singleton('rw');
