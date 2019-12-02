@@ -36,16 +36,20 @@ class SM_Smotr {
           'de'=>'Deutsch',
           'en'=>'English',
           'fr'=>'Français',
-          'ga'=>'Gaeilge',
           'gd'=>'Gàidhlig',
           'it'=>'Italiano',
           'lt'=>'Lietuvių',
+            '----2'=>'',  //Very partial translations
           'cy'=>'Cymraeg (anorffenedig)',
           'es'=>'Español (incompleto)',
+          'ga'=>'Gaeilge (neamhiomlán)',
           'pt'=>'Portuguès (incompleto)',
           'bg'=>'Български (непълен)');
       $options = '';
-      foreach ($hlArr as $hl=>$hlAinm) { $options .= "<option value='$hl|en'" . ( $hl==$smohl ? ' selected' : '' ) . ">$hlAinm</option>\n"; }
+      foreach ($hlArr as $hl=>$hlAinm) {
+          if (substr($hl,0,4)=='----') { $options .= "<option value='' disabled>&nbsp;_{$hlAinm}_</option>/n"; }  //Divider in the list of select options
+            else                       { $options .= "<option value='$hl|en'" . ( $hl==$smohl ? ' selected' : '' ) . ">$hlAinm</option>\n"; }
+      }
       $selCanan = <<< END_selCanan
 <script>
     function atharraichCanan(hl) {
