@@ -74,38 +74,14 @@ class SM_T {
       $stmtUPDtrstrURL->execute([':id'=>$id, ':frithealaiche'=>$frithealaiche, ':duilleag'=>$duilleag, ':utime'=>$utime, ':ip'=>$ip, ':query'=>$query]);
   }
 
-  public static function setcookieThl($hl) {
-     // Cleachd heuristics gus $cookiepath a thomhais, agus cleachd sin airson cookie a chur air dòigh dhan chànan eadar-aghaidh.
-     // Tha na heuristics a’ crochadh air liosta de apps is aithne dhuinn a tha a’ dèanamh feum de Smotr.
-     // Chan eil sin ro mhath idir, ach chan eil fhios agam dé eile is urrainn dhomh a dhèanamh.  --CPD, 2019-12-07
-      $cookiepath = '/'; //default
-      if (strpos($_SERVER['SERVER_NAME'],'multidict.')!==false) { 
-          $cookiepath = '/'; //explicit airson multidict.net, etc.
-      } else {
-          $apps = ['smotr','smotr_dev','bunadas','sruth'];
-          $dirs = explode( '/', trim($_SERVER['SCRIPT_NAME'],'/') );
-          $foundi = -1;
-          foreach ($dirs as $i=>$dir) {
-              foreach($apps as $app) {
-                  if ($app==$dir) { $foundi=$i; break 2; }
-              }
-          }
-          if ($foundi>-1) { $dirs = array_slice($dirs,0,$foundi+1); }
-          $cookiepath = implode('/',$dirs);
-          $cookiepath = "/$cookiepath/";
-          if ($cookiepath=='//') { $cookiepath = '/'; }
-      }
-      setcookie ('Thl',$hl,time()+15000000,$cookiepath);
-  }
-
   public static function hl() {
       if (isset($_REQUEST['hl'])) {
           $hl = $_REQUEST['hl'];
-          self::setcookieThl($hl);
+          setcookie('smohl',$hl);
           return $hl;
       }
-      if (!empty($_COOKIE['Thl'])) { return $_COOKIE['Thl']; }
-     //Mura bheil hl sna request variables, no Thl ann an cookie, cleachd na h-accept-languages bhon bhrabhsair
+      if (!empty($_COOKIE['smohl'])) { return $_COOKIE['smohl']; }
+     //Mura bheil hl sna request variables, no smohl ann an cookie, cleachd na h-accept-languages bhon bhrabhsair
       $http2 = new HTTP2();
       $negotLang = $http2->negotiateLanguage(['gd'=>true,'gd-GB'=>true]);
       if (substr($_SERVER['SERVER_NAME'],-13)=='smo.uhi.ac.uk' && $negotLang<>'gd' && $negotLang<>'gd-GB') {
@@ -130,7 +106,7 @@ class SM_T {
       }
       $negotLang = explode('-',$negotLang)[0]; //Tilg a-mach region sam bith agus gléidh an cód cànain a-mhàin
       if ($negotLang<>'en') { $negotLang .= '|en'; }
-      self::setcookieThl($negotLang);
+      setcookie('smohl',$negotLang);
       return $negotLang;
   }
 
