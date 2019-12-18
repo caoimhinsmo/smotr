@@ -58,14 +58,11 @@
     $T_Dublaich                        = $T->h('Dùblaich');
     $T_DeasaichFios                    = $T->h('DeasaichFios');
     $T_DublaichFios                    = $T->h('DublaichFios');
-    $T_Fosgail_textarea                = $T->h('Fosgail_textarea');
-    $T_Duin_textarea                   = $T->h('Duin_textarea');
 
     $T_Dublachadh_soirbheachail        = $T->j('Dublachadh_soirbheachail');
     $T_Dublachadh_mu_thrath            = $T->j('Dublachadh_mu_thrath');
     $T_Cod_canain_mi_iom               = $T->j('Cod_canain_mi_iom');
     $T_Error_in                        = $T->j('Error_in');
-    $T_Sguab_as_tra_an_darireabh       = $T->j('Sguab_as_tra_an_darireabh');
 
     $T_Soillsich                       = $T->h('Soillsich');
     $T_SoillsichFios                   = $T->h('SoillsichFios');
@@ -237,23 +234,15 @@ EOD_duilleaganHtml;
                 $soillsStyle = '';
                 if ($soills && ($tF<>'.*' || $traF<>'%')) { $soillsStyle = ' style=background-color:yellow'; }
                 $soillsichCananStyle = ( $t==$soillsichCanan ? ' style=font-weight:bold' : '' );
-                $HTML .= "<tr class=inp><td><span id=\"$id-$t-changed\" class=change>✔<span></td>"
+                $HTML .= "<tr><td><span id=\"$id-$t-changed\" class=change>✔<span></td>"
                        . "<td$soillsStyle>$t</td>"
-                       . "<td lang=\"$t\">"
-                       .   "<input$soillsichCananStyle class=inp value=\"$traHtml\" onchange=\"atharraichTra('$id','$t',this.value)\">"
-                       .   "<textarea$soillsichCananStyle class=txa onchange=\"atharraichTra('$id','$t',this.value)\">$traHtml</textarea>"
-                       . "</td>"
-                       . "<td onclick='toggleInpTxa(this)'><a class=inp title='$T_Fosgail_textarea'>▼</a><a class=txa title='$T_Duin_textarea'>▲</a></td>"
+                       . "<td><input$soillsichCananStyle value=\"$traHtml\" onchange=\"atharraichTra('$id','$t',this.value)\" lang=\"$t\"></td>"
                        . "<td><a onclick=sguabTra('$id','$t') title='$T_Sguab_as'>✘</a></td>"
                        . "</tr>\n";
             }
-            $HTML .= "<tr id='$id-tur-row' class=inp><td><span id='$id-tur-changed' class=change>✔<span></td>"
+            $HTML .= "<tr id='$id-tur-row'><td><span id='$id-tur-changed' class=change>✔<span></td>"
                    . "<td><input id='$id-tur-t' value='' pattern='[-A-Za-z]+' style='width:3em' onchange=cruthaichTra('$id') title=\"$T_CananFios\"></td>"
-                   . "<td>"
-                   .   "<input class=inp onchange=cruthaichTra('$id')>"
-                   .   "<textarea class=txa onchange=cruthaichTra('$id')></textarea>"
-                   . "</td>"
-                   . "<td onclick='toggleInpTxa(this)'><a class=inp title='$T_Fosgail_textarea'>▼</a><a class=txa title='$T_Duin_textarea'>▲</a></td>"
+                   . "<td><input id='$id-tur-tra' onchange=cruthaichTra('$id')></td>"
                    . "<td></td></tr>\n";
             $HTML .= "</table>\n";
             $HTML .= "</div>\n";
@@ -293,23 +282,17 @@ EOD_duilleaganHtml;
         table#formtab tr td:nth-child(1) { width:3em; text-align:center; }
         table#formtab input { margin:0; padding:0; border:0; }
         table.tratab { width:100%; border-collapse:collapse; }
-        table.tratab input { margin:0; padding:1px 0; border:0; }
-        table.tratab tr { vertical-align:top; }
-        table.tratab td { margin:0 1px; padding:1px 0; }
-        table.tratab tr:hover { background-color:#fdd; }
+        table.tratab input { margin:0; padding:0; border:0; }
         table.tratab tr td:nth-child(1) { width:0.9em; text-align:center; }
         table.tratab tr td:nth-child(2) { width:3em; text-align:center; }
         table.tratab tr td:nth-child(2) input { text-align:center; }
         table.tratab tr td:nth-child(3) { width:100em; }
         table.tratab tr td:nth-child(3) input { width:100%; }
-        table.tratab tr td:nth-child(3) input:hover,
-        table.tratab tr td:nth-child(3) textarea:hover { background-color:#fea; }
-        table.tratab tr td:nth-child(3) input:focus,
-        table.tratab tr td:nth-child(3) textarea:focus { background-color:#fd9; }
-        table.tratab tr td:nth-child(5) { width:1em; text-align:center; color:red; }
-        table.tratab tr.inp .txa { display:none; }
-        table.tratab tr.txa .inp { display:none; }
-        table.tratab textarea { width:100%; font-family:Verdana,Arial,Helvetica,sans-serif; }
+        table.tratab tr td:nth-child(3) input:hover { background-color:#fea; }
+        table.tratab tr td:nth-child(3) input:focus { background-color:#fd9; }
+        table.tratab tr td:nth-child(4) { width:1em; text-align:center; color:red; }
+        table.tratab tr td:nth-child(4) input { color:red; background-color:#ccc; }
+        table.tratab tr td:nth-child(4) input:hover { background-color:#ff7; }
         div.error { margin:0.5em; padding:0.5em; border:1px solid red; background-color:pink; color:red; font-weight:bold; }
         span.soillsich { background-color:yellow; }
         span.fios { color:green; font-size:70%; }
@@ -320,6 +303,7 @@ EOD_duilleaganHtml;
         span.toggle b { color:yellow; }
         span.toggle input { font-size:90%; vertical-align:bottom; }
         select#soillsichCanan option { padding:0; }
+
     </style>
     <script>
         function soillsichCanan () {
@@ -343,16 +327,11 @@ EOD_duilleaganHtml;
             xhttp.send(params);
         }
         function cruthaichTra(id) {
-            var tEl = document.getElementById(id+'-tur-t');
-            var rowEl = tEl.parentNode.parentNode;
-            var txaEl = rowEl.getElementsByTagName('textarea')[0];
-            var traTd = txaEl.parentNode;
-            var inpEl = traTd.getElementsByTagName('input')[0];
-            var traEl;
-            if (rowEl.className=='inp') { traEl = inpEl; } else { traEl = txaEl; }
+            var tEl   = document.getElementById(id+'-tur-t');
+            var traEl = document.getElementById(id+'-tur-tra');
             var t   = tEl.value;
             var tra = traEl.value;
-            traTd.setAttribute('lang',t);
+            traEl.setAttribute('lang',t);
             if (t=='') {
                 if (tra!='') { tEl.focus(); }
                 return;
@@ -378,34 +357,23 @@ EOD_duilleaganHtml;
                 tickEl.classList.remove('changed'); //Remove the class (if required) and add again after a tiny delay, to restart the animation
                 setTimeout(function(){tickEl.classList.add('changed');},50);
                 var newRow = document.createElement('tr');
-                newRow.className = row.className;
                 var newTd1 = document.createElement('td');
                 var newTd2 = document.createElement('td');
                 var newTd3 = document.createElement('td');
                 var newTd4 = document.createElement('td');
-                var newTd5 = document.createElement('td');
                 newTd1.innerHTML = "<span id="+id+"-"+t+"-changed class=change>✔</span>";
                 newTd2.innerHTML = t;
-                var newInput    = document.createElement('input');
-                var newTextarea = document.createElement('textarea');
-                newInput.style = newTextarea.style = 'color:#090;font-weight:bold';
-                newInput.value = newTextarea.value = tra;
-                newInput.addEventListener('change',    function() { atharraichTra(id,t,this.value); });
-                newTextarea.addEventListener('change', function() { atharraichTra(id,t,this.value); });
+                var newInput = document.createElement('input');
+                newInput.style = 'color:#090;font-weight:bold';
+                newInput.value = tra;
+                newInput.addEventListener('change', function() { atharraichTra(id,t,this.value); });
                 newInput.setAttribute('lang',t);
-                newTextarea.setAttribute('lang',t);
-                newInput.className    = 'inp';
-                newTextarea.className = 'txa';
                 newTd3.appendChild(newInput);
-                newTd3.appendChild(newTextarea);
-                newTd4.innerHTML = "<a class=inp title='$T_Fosgail_textarea'>▼</a><a class=txa title='$T_Duin_textarea'>▲</a>"
-                newTd4.addEventListener('click', function() { toggleInpTxa(this); });
-                newTd5.innerHTML = "<a onclick=sguabTra("+id+",'"+t+"') title='$T_Sguab_as'>✘</a></td>"
+                newTd4.innerHTML = "<a onclick=sguabTra("+id+",'"+t+"') title='Sguab às'>✘</a></td>"
                 newRow.appendChild(newTd1);
                 newRow.appendChild(newTd2);
                 newRow.appendChild(newTd3);
                 newRow.appendChild(newTd4);
-                newRow.appendChild(newTd5);
                 row.parentNode.insertBefore(newRow,row);
                 tEl.value = traEl.value = '';
                 tEl.focus();
@@ -417,7 +385,6 @@ EOD_duilleaganHtml;
             xhttp.send(params);
         }
         function sguabTra(id,t) {
-            if (!confirm('$T_Sguab_as_tra_an_darireabh')) { return; }
             var xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 if (this.status!=200) { alert('$T_Error_in sguabTra:'+this.status); return; }
@@ -426,18 +393,6 @@ EOD_duilleaganHtml;
             var url = window.location.origin + '$bunPhasgan' + '/ajax/sguabTra.php?id=' + id + '&t=' + t; 
             xhttp.open('GET',url,true);
             xhttp.send();
-        }
-        function toggleInpTxa(el) {
-            var tr = el.parentNode;
-            var txaEl = tr.getElementsByTagName('textarea')[0];
-            var inpEl = txaEl.parentNode.getElementsByTagName('input')[0];
-            if (tr.className=='inp') {
-                txaEl.value = inpEl.value;
-                tr.className = 'txa';
-            } else {
-                inpEl.value = txaEl.value;
-                tr.className = 'inp';
-            }
         }
         function toggleSlan() {
             var el = document.getElementById('slanrange');
