@@ -408,7 +408,6 @@ EOD_duilleaganHtml;
                 newRow.appendChild(newTd5);
                 row.parentNode.insertBefore(newRow,row);
                 tEl.value = traEl.value = '';
-                tEl.focus();
             }
             var url = window.location.origin + '$bunPhasgan' + '/ajax/cruthaichTra.php?id=';
             var params = 'id=' + id + '&t=' + t + '&tra=' + traenc;
