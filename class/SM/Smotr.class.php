@@ -39,12 +39,13 @@ class SM_Smotr {
           'gd'=>'Gàidhlig',
           'it'=>'Italiano',
           'lt'=>'Lietuvių',
+          'pt'=>'Portuguès',
+          'bg'=>'Български',
+            '----1'=>'',  //Partial translations
+          'es'=>'Español',
             '----2'=>'',  //Very partial translations
           'cy'=>'Cymraeg (anorffenedig)',
-          'es'=>'Español (incompleto)',
-          'ga'=>'Gaeilge (neamhiomlán)',
-          'pt'=>'Portuguès (incompleto)',
-          'bg'=>'Български (непълен)');
+          'ga'=>'Gaeilge (neamhiomlán)');
       $options = '';
       foreach ($hlArr as $hl=>$hlAinm) {
           if (substr($hl,0,4)=='----') { $options .= "<option value='' disabled>&nbsp;_{$hlAinm}_</option>/n"; }  //Divider in the list of select options
