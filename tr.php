@@ -309,7 +309,7 @@ EOD_duilleaganHtml;
         table.tratab tr td:nth-child(5) { width:1em; text-align:center; color:red; }
         table.tratab tr.inp .txa { display:none; }
         table.tratab tr.txa .inp { display:none; }
-        table.tratab textarea { width:100%; font-family:Verdana,Arial,Helvetica,sans-serif; }
+        table.tratab textarea { width:100%; font-family:Verdana,Arial,Helvetica,sans-serif; resize:vertical; }
         div.error { margin:0.5em; padding:0.5em; border:1px solid red; background-color:pink; color:red; font-weight:bold; }
         span.soillsich { background-color:yellow; }
         span.fios { color:green; font-size:70%; }
