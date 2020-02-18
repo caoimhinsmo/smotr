@@ -451,7 +451,7 @@ EOD_duilleaganHtml;
             var xhttp = new XMLHttpRequest();
             xhttp.onload = function() {
                 if (this.status!=200) { alert('$T_Error_in dublaichStr:\\n\\n'+this.status); return; }
-                var resp = xhttp.responseText;
+                var resp = this.responseText;
                 if       (resp=='OK') { alert('$T_Dublachadh_soirbheachail'); }
                  else if (resp=='KO') { alert('$T_Dublachadh_mu_thrath'); }
                  else                 { alert('$T_Error_in dublaichStr:\\n\\n' + resp); }
