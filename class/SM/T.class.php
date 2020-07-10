@@ -42,8 +42,15 @@ class SM_T {
        else if ($opt=='eq')  { $tra = strtr($tra,["'"=>"\'", '"'=>'\"']); } //Escape quotes for use in Javascript
       return $tra;
   }
-  public function h($str) { return htmlspecialchars( self::_($str), ENT_QUOTES ); } //Escape special characters and quotes for use in HTML
-  public function j($str) { return strtr( self::_($str), ["'"=>"\'", '"'=>'\"'] ); } //Escape quotes for use in Javascript strings
+  public function h($str) {
+      $str = self::_($str);
+      return htmlspecialchars($str,ENT_QUOTES); //Escape special characters and quotes for use in HTML
+  }
+  public function j($str) {
+      $str = self::_($str);
+      $str = strtr( $str, ["\'"=>"\ '", '\"'=>'\ "'] ); //Paranoia. First zap any \' or \" escape sequences by inserting an intervening space
+      return strtr( $str, ["'"=>"\'", '"'=>'\"'] ); //Escape quotes for use in Javascript strings
+  }
 
   private static function log($id,$t) {
       $SmotrLog = SM_SmotrLogPDO::singleton('rw');
