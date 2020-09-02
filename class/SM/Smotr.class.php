@@ -8,6 +8,10 @@ class SM_Smotr {
   public static function smotrUrl() {
       return 'https://' . $_SERVER['SERVER_NAME'] . self::smotrHomeDir();
   }
+  public static function userRegistrationUrl() {
+      if ($_SERVER['SERVER_NAME']=='www2.smo.uhi.ac.uk') { return 'https://dev.multidict.net/clilstore/register.php'; }
+      return 'https://multidict.net/clilstore/register.php';
+  }
 
   public static function navbar($domhan='',$duilleagAghaidh=0,$str=0) {
       $hl0 = SM_T::hl0();
