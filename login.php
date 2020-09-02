@@ -61,6 +61,7 @@ ENDfailure;
         $userSC     = htmlspecialchars($userAsTyped);
         $passwordSC = htmlspecialchars($passwordAsTyped);
         if (empty($userSC)) { $userAutofocus = 'autofocus'; } else { $passwordAutofocus = 'autofocus'; }
+        $userRegistrationUrl = SM_Smotr::userRegistrationUrl();
         $formHtml = <<<ENDform
 <form method="POST">
 <table>
@@ -71,7 +72,7 @@ ENDfailure;
 </table>
 </form>
 
-<p style="margin-top:3em">(Or else <a href="https://dev.multidict.net/clilstore/register.php">register</a> a new userid)</p>
+<p style="margin-top:3em">(Or else <a href="$userRegistrationUrl">register</a> a new userid)</p>
 ENDform;
     }
  
