@@ -85,10 +85,11 @@ class SM_T {
      // Cleachd heuristics gus $cookiepath a thomhais, agus cleachd sin airson cookie a chur air dòigh dhan chànan eadar-aghaidh.
      // Tha na heuristics a’ crochadh air liosta de apps is aithne dhuinn a tha a’ dèanamh feum de Smotr.
      // Chan eil sin ro mhath idir, ach chan eil fhios agam dé eile is urrainn dhomh a dhèanamh.  --CPD, 2019-12-07
+     // (B'urrainn dhuinn '/' a chleachdadh fad na h-ùine mura be gu bheil diofar cànanan eadar-aghaidh ri fhaighinn aig diofar apps)
       $cookiepath = '/'; //default
-      if (strpos($_SERVER['SERVER_NAME'],'multidict.')!==false) { 
-          $cookiepath = '/'; //explicit airson multidict.net, etc.
-      } else {
+      if  ( (strpos($_SERVER['SERVER_NAME'],'multidict.')===false)      // Fàg aig '/' e airson multidict.*
+         && (strpos($_SERVER['SERVER_NAME'],'clilstore.eu')===false) )  // agus cuideachd airson clilstore.eu
+      { 
           $apps = ['smotr','smotr_dev','bunadas','sruth'];
           $dirs = explode( '/', trim($_SERVER['SCRIPT_NAME'],'/') );
           $foundi = -1;
@@ -97,12 +98,14 @@ class SM_T {
                   if ($app==$dir) { $foundi=$i; break 2; }
               }
           }
-          if ($foundi>-1) { $dirs = array_slice($dirs,0,$foundi+1); }
-          $cookiepath = implode('/',$dirs);
-          $cookiepath = "/$cookiepath/";
-          if ($cookiepath=='//') { $cookiepath = '/'; }
+          if ($foundi>-1) {
+              $dirs = array_slice($dirs,0,$foundi+1);
+              $cookiepath = implode('/',$dirs);
+              $cookiepath = "/$cookiepath/";
+              if ($cookiepath=='//') { $cookiepath = '/'; }
+          }
       }
-      setcookie ('Thl',$hl,time()+15000000,$cookiepath);
+      setcookie ( 'Thl', $hl, ['path'=>$cookiepath,'samesite'=>'Lax','expires'=>time()+5000000] ); //expiry 2 mhìos
   }
 
   public static function hl() {
