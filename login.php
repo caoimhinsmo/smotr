@@ -27,16 +27,12 @@
         if  ($stmt1->execute()
           && $stmt1->fetch()
           && (crypt($passwordAsTyped,$password)==$password || $password=='')) {
-//------- Temporary measure to reset about 20 passwords accidentally set to null.  Just set the password to the first password the user attempts.
-if ($password=='' && strlen($passwordAsTyped)>3) {
-    $passwordCrypt = crypt($passwordAsTyped,'$2a$07$rudeiginLanLanAmaideach');
-    $stmt2 = $DbMultidict->prepare('UPDATE users SET password=:password WHERE user=:user');
-    $stmt2->execute([':password'=>$passwordCrypt,':user'=>$user]);
-}
            //Copy filter parameters from the most recent previous Clilstore session (if any) for this user. Remember the new csid.
-            $newCsid = $_COOKIE['csSessionId'];
-            $stmt4 = $DbMultidict->prepare('UPDATE users SET csid=:newCsid WHERE user=:user');
-            $stmt4->execute([':newCsid'=>$newCsid,':user'=>$user]);
+            if (isset($_COOKIE['csSessionId'])) {
+                $newCsid = $_COOKIE['csSessionId'];
+                $stmt4 = $DbMultidict->prepare('UPDATE users SET csid=:newCsid WHERE user=:user');
+                $stmt4->execute([':newCsid'=>$newCsid,':user'=>$user]);
+            }
            //Create cookie
             $cookieDomain = $servername;
             if (preg_match('|www\d*\.(.*)|',$cookieDomain,$matches)) { $cookieDomain = $matches[1]; }   // Remove www., www2., etc. e.g. www2.smo.uhi.ac.uk->smo.uhi.ac.uk
