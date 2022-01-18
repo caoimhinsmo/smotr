@@ -13,7 +13,7 @@
 
     $myCLIL = SM_myCLIL::singleton();
     $ceadaichte = SM_myCLIL::LUCHD_EADARTHEANGACHAIDH;
-    if (!$myCLIL->cead($ceadaichte)) { $myCLIL->diultadh(''); }
+//    if (!$myCLIL->cead($ceadaichte)) { $myCLIL->diultadh(''); }
     $myCLIL->dearbhaich();
     $Smotr = SM_SmotrPDOedit::singleton('r');
 
