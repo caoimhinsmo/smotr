@@ -9,6 +9,7 @@
     $myCLIL::logout();
     $servername = SM_myCLIL::servername();
     $serverhome = SM_myCLIL::serverhome();
+    $till_gu = $_GET['till_gu'] ?? "$serverhome/teanga/";
 
     echo <<<EOD1
 <!DOCTYPE html>
@@ -16,12 +17,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Logout from Clilstore</title>
-    <meta http-equiv="refresh" content="2; url=$serverhome/teanga/">
+    <meta http-equiv="refresh" content="2; url=$till_gu">
     <link rel="icon" type="image/png" href="/favicons/clilstore.png">
 </head>
 <body>
 
-<p><img src="/icons-smo/wave.gif" alt=""> You have been logged out from myCLIL</p>
+<p><img src="/icons-smo/wave.gif" alt=""> You have been logged out from myCLIL on www3.smo.uhi.ac.uk</p>
 
 </body>
 </html>

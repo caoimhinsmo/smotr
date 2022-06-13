@@ -22,6 +22,7 @@ class SM_Smotr {
       $T_canan_eadarAghaidh = $T->h('canan_eadarAghaidh');
       $T_Log_air            = $T->h('Log_air');
       $T_Log_air_fios       = $T->h('Log_air_fios');
+      $T_Logout             = $T->h('Logout');
       $T_tr_fios            = $T->h('tr_fios');
       if ($duilleagAghaidh) { $SmotrCeangal = "<li><a href='/toisich/' title='Sabhal Mór Ostaig - prìomh dhuilleag (le dà briog)'>SMO</a>"; }
         else                { $SmotrCeangal = "<li><a href='$smotrHomeDir' title='$T_SmotrTitle'>Smotr</a>"; }
@@ -31,8 +32,8 @@ class SM_Smotr {
       if ($myCLIL->cead(SM_myCLIL::LUCHD_EADARTHEANGACHAIDH) && !empty($domhan))
         { $trPutan = "\n<li class=deas><a href='/teanga/smotr/tr.php?domhan=$domhan' target='tr' title='$T_tr_fios'>tr</a>"; } else { $trPutan = ''; }
       $ceangalRiMoSMO = ( isset($myCLIL->id)
-                        ? "<li class='deas'><a href='{$smotrHomeDir}logout.php' title='Log out from myCLIL'>Logout</a></li>"
-                        : "<li class='deas'><a href='{$smotrHomeDir}login.php?till_gu=$smotrUrl' title='$T_Log_air_fios'>$T_Log_air</a></li>"
+                        ? "<li class='deas'><a href='{$smotrHomeDir}logout.php' title='Log out from myCLIL'>$T_Logout</a>"
+                        : "<li class='deas'><a href='{$smotrHomeDir}login.php?till_gu=$smotrUrl' title='$T_Log_air_fios'>$T_Log_air</a>"
                         );
       $hlArr = array(
           'br'=>'Brezhoneg',
